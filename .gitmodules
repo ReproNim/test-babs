@@ -1,0 +1,4 @@
+[submodule "toybidsapp-container"]
+	path = toybidsapp-container
+	url = ./toybidsapp-container
+	datalad-id = 47e38ba7-5ed2-4f28-8c82-2b339e898ffa
