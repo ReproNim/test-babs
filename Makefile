@@ -1,23 +1,14 @@
-REGISTRY=docker.io                                                 
-HUBUSER=asmacdo                                                    
-REPO=centos7-slurm-conda                                           
-TAG=0.0.0                                                          
+REGISTRY=docker.io
+HUBUSER=asmacdo
+REPO=centos7-slurm
+TAG=23.11.07
                                                                    
-FQDN_IMAGE=${REGISTRY}/${HUBUSER}/${REPO}:${TAG}                   
-                                                                   
-                                                                   
-build-conda-image:                                                 
-	podman build -t ${FQDN_IMAGE} .                                  
-                                                                   
-run-conda-image:                                                   
-	podman run -it --rm -v /home/austin/.conda/envs/babs/:/opt/conda/
+FQDN_IMAGE=${REGISTRY}/${HUBUSER}/${REPO}:${TAG}
+
+# vanilla slurm, conda bound in
+run-slurm:
+	podman run -it --rm \
+		-v /home/asmacdo/miniconda3/:/home/asmacdo/miniconda3/ \
 		-h slurmctl --cap-add sys_admin --privileged \
 		${FQDN_IMAGE} \
-		/bin/bash                                                      
-run-slurm:                                                         
-	podman run -it --rm \                                            
-		-v /home/austin/devel/sandbox/slurm-micro-babs/bin/conda:/usr/bin/conda
-		-v /home/austin/.conda/envs/babs/:/home/austin/.conda/envs/babs
-		-h slurmctl --cap-add sys_admin --privileged \                 
-		${FQDN_IMAGE} \                                                
 		/bin/bash     
