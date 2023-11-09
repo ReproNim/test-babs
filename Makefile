@@ -9,9 +9,10 @@ FQDN_IMAGE=${REGISTRY}/${HUBUSER}/${REPO}:${TAG}
 # 		-v /mnt/DATA/data/asmacdo/test-babs/bin/:/babsbin/ \
 # vanilla slurm, conda bound in
 slurm:
-	podman run  \
+	podman run --rm \
 		-v /home/asmacdo/miniconda3/:/home/asmacdo/miniconda3/ \
 		-h slurmctl --cap-add sys_admin --privileged \
+		--name slurm \
 		${FQDN_IMAGE} \
 		tail -f # hack to keep it running TODO: update image enrtry point
 
