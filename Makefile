@@ -5,12 +5,13 @@ TAG=23.11.07
                                                                    
 FQDN_IMAGE=${REGISTRY}/${HUBUSER}/${REPO}:${TAG}
 
+
 # 		-e PATH="/babsbin/:${PATH}" \
 # 		-v /mnt/DATA/data/asmacdo/test-babs/bin/:/babsbin/ \
 # vanilla slurm, conda bound in
 slurm:
 	podman run --rm \
-		-v /home/asmacdo/miniconda3/:/home/asmacdo/miniconda3/ \
+		-v ${HOME}/miniconda3/:${HOME}/miniconda3/ \
 		-h slurmctl --cap-add sys_admin --privileged \
 		--name slurm \
 		${FQDN_IMAGE} \
@@ -18,12 +19,13 @@ slurm:
 
 
 test:
-	PATH=${PWD}/bin:${PATH} which sbatch
-	PATH=${PWD}/bin:${PATH} babs-check-setup --project_root /mnt/DATA/data/asmacdo/test-babs/my_BABS_project/ --job-test
+	echo ${HOME}
 
 
 test-all:
 	babs-check-setup --project_root /mnt/DATA/data/asmacdo/test-babs/my_BABS_project/
+	PATH=${PWD}/bin:${PATH} which sbatch
+	PATH=${PWD}/bin:${PATH} babs-check-setup --project_root /mnt/DATA/data/asmacdo/test-babs/my_BABS_project/ --job-test
 
 cleanup:
 	rm -rf my_BABS_project/input_ria/e0d/05fa1-e672-4310-a075-e602fa057104/objects/5b/
