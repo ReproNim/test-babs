@@ -15,7 +15,8 @@ cluster_resources:
 
 # Necessary commands to be run first:
 script_preamble: |
-    source ${CONDA_PREFIX}/bin/activate babs    # for Penn Med CUBIC cluster
+    . "/home/asmacdo/miniconda3/etc/profile.d/conda.sh" && \
+    conda activate babs  
 
 # Where to run the jobs:
 job_compute_space: "${CBICA_TMPDIR}"   # for Penn Med CUBIC cluster tmp space
