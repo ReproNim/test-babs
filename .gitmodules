@@ -2,3 +2,7 @@
 	path = toybidsapp-container
 	url = ./toybidsapp-container
 	datalad-id = 47e38ba7-5ed2-4f28-8c82-2b339e898ffa
+[submodule "my_BABS_project/analysis"]
+	path = my_BABS_project/analysis
+	url = ./my_BABS_project/analysis
+	datalad-id = 7fa821cf-678c-4f3f-b9e6-4aff77022a2b
