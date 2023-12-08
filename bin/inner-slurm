@@ -8,4 +8,4 @@ topd=$(readlink -f "$0"  | xargs dirname | xargs dirname)
 
 # echo "Delegating inside: topd=$topd cmd=$cmd"
 
-podman exec -it slurm "$cmd" "$@"
+podman exec -it --user $USER slurm "$cmd" "$@"
